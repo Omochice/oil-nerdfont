@@ -13,3 +13,4 @@ packages:
 - name: suzuki-shunsuke/ghalint@v0.2.9
 - name: rhysd/actionlint@v1.7.0
 - name: JohnnyMorganz/StyLua@v0.20.0
+- name: go-task/task@v3.37.2

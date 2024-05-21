@@ -1,0 +1,9 @@
+version: "3"
+# see: https://taskfile.dev/usage/
+
+tasks:
+  fmt:
+    shopt:
+      - globstar
+    cmds:
+      - stylua lua/**/*.lua
