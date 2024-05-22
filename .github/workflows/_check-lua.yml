@@ -1,32 +1,20 @@
-name: Basic CI
+name: Check lua code states
 
-on:
-  push:
+on: workflow_call
 
 jobs:
-  Check-Code-State:
+  check-lua-state:
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
       - name: checkout
         uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
-      - name: Check Changed Files
-        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3.0.2
-        id: filter
-        with:
-          filters: |
-            lua:
-              - "./**/*.lua"
-              - ".github/workflows/ci.yml"
       - uses: aquaproj/aqua-installer@6ce1f8848ec8e61f14d57bd5d7597057a6dd187c # v3.0.1
-        if: steps.filter.outputs.lua == 'true'
         with:
           aqua_version: v2.28.1
       - name: Check lua code format
-        if: steps.filter.outputs.lua == 'true'
         run: |
           task check-fmt
       - name: Run Luacheck
         uses: lunarmodules/luacheck@418f48976c73be697fe64b0eba9ea9821ac9bca8 # v1.1.2
-        if: steps.filter.outputs.lua == 'true'
