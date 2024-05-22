@@ -1,3 +1,37 @@
 *untitled.txt*                                                 No description
+=============================================================================
+oil-nerdfont~
+
+Integrate oil.nvim |https://github.com/stevearc/oil.nvim| with vim-nerdfont |https://github.com/lambdalisue/vim-nerdfont|.
+
+Requirements~
+
+- oil.nvim |https://github.com/stevearc/oil.nvim|
+- vim-nerdfont |https://github.com/lambdalisue/vim-nerdfont|
+
+Quick start~
+
+>
+	require("oil-nerdfont").setup()
+<
+
+Options~
+
+>
+	require("oil-nerdfont").setup({
+	  -- setting for highlight icon
+	  highlight = {
+	    -- highlight group name for directory icon
+	    directory = "OilDirIcon",
+	    -- highlight group name for file icon
+	    file = nil,
+	  }
+	})
+<
+
+License~
+
+zlib |https://github.com/Omochice/oil-nerdfont/blob/main/LICENSE|.
+
 
 vim:tw=78:ts=8:noet:ft=help:norl:
