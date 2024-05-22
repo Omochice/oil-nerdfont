@@ -1,3 +1,8 @@
+---
+name: oil-nerdfont
+description: Integrate oil.nvim with vim-nerdfont
+---
+
 =pod
 
 =head1 oil-nerdfont
