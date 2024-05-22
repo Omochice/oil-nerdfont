@@ -1,0 +1,45 @@
+=pod
+
+=head1 oil-nerdfont
+
+Integrate L<oil.nvim|https://github.com/stevearc/oil.nvim> with L<vim-nerdfont|https://github.com/lambdalisue/vim-nerdfont>.
+
+=head2 Requirements
+
+=over 0
+
+=item * L<oil.nvim|https://github.com/stevearc/oil.nvim>
+
+=item * L<vim-nerdfont|https://github.com/lambdalisue/vim-nerdfont>
+
+=back
+
+=head2 Quick start
+
+=begin lua
+
+require("oil-nerdfont").setup()
+
+=end lua
+
+=head2 Options
+
+=begin lua
+
+require("oil-nerdfont").setup({
+  -- setting for highlight icon
+  highlight = {
+    -- highlight group name for directory icon
+    directory = "OilDirIcon",
+    -- highlight group name for file icon
+    file = nil,
+  }
+})
+
+=end lua
+
+=head2 License
+
+L<zlib|https://github.com/Omochice/oil-nerdfont/blob/main/LICENSE>.
+
+=cut
