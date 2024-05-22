@@ -5,11 +5,11 @@ description: Integrate oil.nvim with vim-nerdfont
 
 =pod
 
-=head1 oil-nerdfont
+=head1 oil-nerdfont X<oil-nerdfont>
 
 Integrate L<oil.nvim|https://github.com/stevearc/oil.nvim> with L<vim-nerdfont|https://github.com/lambdalisue/vim-nerdfont>.
 
-=head2 Requirements
+=head2 Requirements X<oil-nerdfont-requirements>
 
 =over 0
 
@@ -19,7 +19,7 @@ Integrate L<oil.nvim|https://github.com/stevearc/oil.nvim> with L<vim-nerdfont|h
 
 =back
 
-=head2 Quick start
+=head2 Quick start X<oil-nerdfont-quick-start>
 
 =begin lua
 
@@ -27,7 +27,7 @@ require("oil-nerdfont").setup()
 
 =end lua
 
-=head2 Options
+=head2 Configures X<oil-nerdfont-configures>
 
 =begin lua
 
@@ -43,7 +43,7 @@ require("oil-nerdfont").setup({
 
 =end lua
 
-=head2 License
+=head2 License X<oil-nerdfont-license>
 
 L<zlib|https://github.com/Omochice/oil-nerdfont/blob/main/LICENSE>.
 
