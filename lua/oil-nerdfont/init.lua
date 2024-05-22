@@ -36,7 +36,7 @@ M.setup = function(opt)
 				return { icon, merged.highlight.directory }
 			end
 			if meta and meta.display_name then
-				filename = Meta.display_name
+				filename = meta.display_name
 			end
 			local icon = vim.fn["nerdfont#find"](filename)
 			return { icon, merged.highlight.file }

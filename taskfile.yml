@@ -7,3 +7,8 @@ tasks:
       - globstar
     cmds:
       - stylua lua/**/*.lua
+  check-fmt:
+    shopt:
+      - globstar
+    cmds:
+      - stylua --check lua/**/*.lua
