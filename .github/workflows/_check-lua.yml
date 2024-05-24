@@ -17,4 +17,4 @@ jobs:
         run: |
           task check-fmt
       - name: Run Luacheck
-        uses: lunarmodules/luacheck@418f48976c73be697fe64b0eba9ea9821ac9bca8 # v1.1.2
+        uses: lunarmodules/luacheck@cc089e3f65acdd1ef8716cc73a3eca24a6b845e4 # v1.2.0
