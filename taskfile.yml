@@ -7,8 +7,17 @@ tasks:
       - globstar
     cmds:
       - stylua lua/**/*.lua
+  check:
+    cmds:
+      - task: check-fmt
+      - task: check-selene
   check-fmt:
     shopt:
       - globstar
     cmds:
       - stylua --check lua/**/*.lua
+  check-selene:
+    shopt:
+      - globstar
+    cmds:
+      - selene lua/**/*.lua
