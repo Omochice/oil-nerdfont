@@ -27,7 +27,8 @@ jobs:
               - .github/workflows/_check-lua.yml
               - ./**/*.lua
               - taskfile.yml
-              - .luacheckrc
+              - selene.toml
+              - vim.toml
   check-actions:
     needs: path-filter
     if: needs.path-filter.outputs.actions == 'true'

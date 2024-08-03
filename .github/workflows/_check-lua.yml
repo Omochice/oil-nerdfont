@@ -14,8 +14,6 @@ jobs:
       - uses: aquaproj/aqua-installer@6ce1f8848ec8e61f14d57bd5d7597057a6dd187c # v3.0.1
         with:
           aqua_version: v2.30.0
-      - name: Check lua code format
+      - name: Check lua code
         run: |
-          task check-fmt
-      - name: Run Luacheck
-        uses: lunarmodules/luacheck@cc089e3f65acdd1ef8716cc73a3eca24a6b845e4 # v1.2.0
+          task check
