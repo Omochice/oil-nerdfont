@@ -4,6 +4,7 @@ on: push
 
 jobs:
   path-filter:
+    timeout-minutes: 30
     outputs:
       actions: ${{steps.changes.outputs.actions}}
       lua: ${{steps.changes.outputs.lua}}
