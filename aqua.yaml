@@ -12,6 +12,6 @@ registries:
 packages:
 - name: suzuki-shunsuke/ghalint@v1.3.0
 - name: rhysd/actionlint@v1.7.7
-- name: JohnnyMorganz/StyLua@v2.0.2
+- name: JohnnyMorganz/StyLua@v2.1.0
 - name: go-task/task@v3.43.1
 - name: Kampfkarren/selene@0.27.1
