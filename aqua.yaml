@@ -14,4 +14,4 @@ packages:
 - name: rhysd/actionlint@v1.7.7
 - name: JohnnyMorganz/StyLua@v2.1.0
 - name: go-task/task@v3.43.3
-- name: Kampfkarren/selene@0.27.1
+- name: Kampfkarren/selene@0.28.0
