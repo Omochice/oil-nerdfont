@@ -79,9 +79,9 @@
         system:
         let
           pkgs = nixpkgsFor.${system};
-          to-run = program: {
+          run-as = name: program: {
             type = "app";
-            program = program |> pkgs.writeShellScript "check-actions" |> builtins.toString;
+            program = program |> pkgs.writeShellScript name |> builtins.toString;
           };
         in
         {
@@ -91,20 +91,20 @@
               ${pkgs.ghalint}/bin/ghalint run
               ${pkgs.actionlint}/bin/actionlint -color
             ''
-            |> to-run;
+            |> run-as "check-actions";
           check-lua =
             ''
               set -e
               ${pkgs.stylua}/bin/stylua --check lua/**/*.lua
               ${pkgs.selene}/bin/selene lua/**/*.lua
             ''
-            |> to-run;
+            |> run-as "check-lua";
           check-renovate-config =
             ''
               set -e
               ${pkgs.renovate}/bin/renovate-config-validator --strict renovate.json5
             ''
-            |> to-run;
+            |> run-as "check-renovate-config";
         }
       );
       formatter = forAllSystems (system: (treefmt system).config.build.wrapper);
