@@ -101,7 +101,7 @@ jobs:
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
       - name: check actions
         run: |
-          nix run .#check-renovate-confnig
+          nix run .#check-renovate-config
   status-check:
     timeout-minutes: 30
     runs-on: ubuntu-latest
