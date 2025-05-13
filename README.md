@@ -1,19 +1,19 @@
-# oil-nerdfont 
+# oil-nerdfont
 
 Integrate [oil.nvim](https://github.com/stevearc/oil.nvim) with [vim-nerdfont](https://github.com/lambdalisue/vim-nerdfont).
 
-## Requirements 
+## Requirements
 
 - [oil.nvim](https://github.com/stevearc/oil.nvim)
 - [vim-nerdfont](https://github.com/lambdalisue/vim-nerdfont)
 
-## Quick start 
+## Quick start
 
 ```lua
 require("oil-nerdfont").setup()
 ```
 
-## Configures 
+## Configures
 
 ```lua
 require("oil-nerdfont").setup({
@@ -27,7 +27,6 @@ require("oil-nerdfont").setup({
 })
 ```
 
-## License 
+## License
 
 [zlib](https://github.com/Omochice/oil-nerdfont/blob/main/LICENSE).
-
