@@ -10,7 +10,7 @@ registries:
 - type: standard
   ref: v4.366.0 # renovate: depName=aquaproj/aqua-registry
 packages:
-- name: suzuki-shunsuke/ghalint@v1.3.0
+- name: suzuki-shunsuke/ghalint@v1.4.0
 - name: rhysd/actionlint@v1.7.7
 - name: JohnnyMorganz/StyLua@v2.1.0
 - name: go-task/task@v3.43.3
