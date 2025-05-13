@@ -90,6 +90,7 @@
               set -e
               ${pkgs.ghalint}/bin/ghalint run
               ${pkgs.actionlint}/bin/actionlint -color
+              ${pkgs.zizmor}/bin/zizmor .github/workflows/*.yml
             ''
             |> run-as "check-actions";
           check-lua =
