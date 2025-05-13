@@ -43,6 +43,7 @@
           {
             settings.global.excludes = [
               "CHANGELOG.md"
+              ".github/release-please-manifest.json"
             ];
             programs = {
               # keep-sorted start block=yes
