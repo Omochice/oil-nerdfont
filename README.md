@@ -1,6 +1,7 @@
 # oil-nerdfont
 
-Integrate [oil.nvim](https://github.com/stevearc/oil.nvim) with [vim-nerdfont](https://github.com/lambdalisue/vim-nerdfont).
+Integrate [oil.nvim](https://github.com/stevearc/oil.nvim) with
+[vim-nerdfont](https://github.com/lambdalisue/vim-nerdfont).
 
 ## Requirements
 
