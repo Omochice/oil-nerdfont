@@ -1,13 +1,13 @@
 {
   description = "Integrate oil.nvim with vim-nerdfont";
-
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur = {
+    nur-packages = {
       url = "github:Omochice/nur-packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -15,51 +15,62 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       treefmt-nix,
-      nur,
-      ...
+      flake-utils,
+      nur-packages,
     }:
-    let
-      supportedSystems = [
-        "x86_64-linux"
-        "x86_64-darwin"
-        "aarch64-linux"
-        "aarch64-darwin"
-      ];
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-      nixpkgsFor = forAllSystems (
-        system:
-        import nixpkgs {
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs {
           inherit system;
-          overlays = [ nur.overlays.default ];
-        }
-      );
-
-      treefmt =
-        system:
-        treefmt-nix.lib.evalModule nixpkgsFor.${system} (
+          overlays = [
+            nur-packages.overlays.default
+          ];
+        };
+        treefmt = treefmt-nix.lib.evalModule pkgs (
           { ... }:
+          let
+            rumdlConfig = (pkgs.formats.toml { }).generate "rumdl.toml" {
+              # keep-sorted start
+              MD004.style = "dash";
+              MD007.indent = 4;
+              MD007.style = "fixed";
+              MD041.enabled = false;
+              MD049.style = "underscore";
+              MD050.style = "asterisk";
+              MD055.style = "leading-and-trailing";
+              MD060.enabled = true;
+              MD060.style = "aligned";
+              global.line_length = 0;
+              # keep-sorted end
+            };
+          in
           {
             settings.global.excludes = [
               "CHANGELOG.md"
               ".github/release-please-manifest.json"
             ];
+            settings.formatter = {
+              # keep-sorted start block=yes
+              rumdl = {
+                command = "${pkgs.lib.getExe pkgs.rumdl}";
+                options = [
+                  "fmt"
+                  "--config"
+                  (toString rumdlConfig)
+                ];
+                includes = [ "*.md" ];
+              };
+              # keep-sorted end
+            };
             programs = {
               # keep-sorted start block=yes
-              formatjson5 = {
-                enable = true;
-                indent = 2;
-              };
               keep-sorted.enable = true;
-              mdformat.enable = true;
               nixfmt.enable = true;
-              pinact = {
-                enable = true;
-                update = false;
-              };
-              stylua.enable = true;
-              taplo.enable = true;
+              toml-sort.enable = true;
               yamlfmt = {
                 enable = true;
                 settings = {
@@ -73,43 +84,37 @@
             };
           }
         );
-    in
-    {
-      # keep-sorted start block=yes
-      apps = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgsFor.${system};
-          run-as = name: program: {
-            type = "app";
-            program = program |> pkgs.writeShellScript name |> builtins.toString;
-          };
-        in
-        {
-          check-actions =
-            ''
-              set -e
-              ${pkgs.ghalint}/bin/ghalint run
-              ${pkgs.actionlint}/bin/actionlint -color
-              ${pkgs.zizmor}/bin/zizmor .github/workflows/*.yml
-            ''
-            |> run-as "check-actions";
-          check-lua =
-            ''
-              set -e
-              ${pkgs.stylua}/bin/stylua --check lua/**/*.lua
-              ${pkgs.selene}/bin/selene lua/**/*.lua
-            ''
-            |> run-as "check-lua";
-          check-renovate-config =
-            ''
-              set -e
-              ${pkgs.renovate}/bin/renovate-config-validator --strict renovate.json5
-            ''
-            |> run-as "check-renovate-config";
-        }
-      );
-      formatter = forAllSystems (system: (treefmt system).config.build.wrapper);
-      # keep-sorted end
-    };
+        run-as = name: program: {
+          type = "app";
+          program = program |> pkgs.writeShellScript name |> toString;
+        };
+      in
+      {
+        # keep-sorted start
+        apps.check-actions =
+          ''
+            set -e
+            ${pkgs.lib.getExe pkgs.ghalint} run
+            ${pkgs.lib.getExe pkgs.actionlint} -color
+            ${pkgs.lib.getExe pkgs.zizmor} .github/
+          ''
+          |> run-as "check-actions";
+        apps.check-lua =
+          ''
+            set -e
+            ${pkgs.lib.getExe pkgs.stylua} --check lua/**/*.lua
+            ${pkgs.lib.getExe pkgs.selene} lua/**/*.lua
+          ''
+          |> run-as "check-lua";
+        apps.check-renovate-config =
+          ''
+            set -e
+            ${pkgs.renovate}/bin/renovate-config-validator --strict renovate.json5
+          ''
+          |> run-as "check-renovate-config";
+        checks.formatting = treefmt.config.build.check self;
+        formatter = treefmt.config.build.wrapper;
+        # keep-sorted end
+      }
+    );
 }
