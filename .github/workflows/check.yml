@@ -103,7 +103,7 @@ jobs:
         run: |
           nix run .#check-renovate-config
   status-check:
-    timeout-minutes: 30
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     needs:
       - check-actions
