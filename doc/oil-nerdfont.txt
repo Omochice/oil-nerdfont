@@ -3,7 +3,8 @@
 oil-nerdfont ~
                                                                *oil-nerdfont*
 
-Integrate oil.nvim |https://github.com/stevearc/oil.nvim| with vim-nerdfont |https://github.com/lambdalisue/vim-nerdfont|.
+Integrate oil.nvim |https://github.com/stevearc/oil.nvim| with
+vim-nerdfont |https://github.com/lambdalisue/vim-nerdfont|.
 
 Requirements ~
                                                   *oil-nerdfont-requirements*
@@ -14,14 +15,14 @@ Requirements ~
 Quick start ~
                                                    *oil-nerdfont-quick-start*
 
->
+>lua
 	require("oil-nerdfont").setup()
 <
 
 Configures ~
                                                     *oil-nerdfont-configures*
 
->
+>lua
 	require("oil-nerdfont").setup({
 	  -- setting for highlight icon
 	  highlight = {
